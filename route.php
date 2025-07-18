@@ -1,7 +1,7 @@
 <?php
 session_start();
     $page = $_GET['page'] ?? 'home';
-    $allowed_page = ['acceuil', 'ajoutAmis', 'update', 'demandesAmis', 'profil_edit', 'amis', 'notification', 'login', 'commentaire', 'messagerie', 'confirmPass', 'message','signup', 'confirm', 'mediaPost', 'editPassword', 'acceuil', 'insertEmail','profil'];
+    $allowed_page = ['acceuil', 'ajoutAmis', 'photos', 'videos', 'update', 'demandesAmis', 'profil_edit', 'amis', 'notification', 'login', 'commentaire', 'messagerie', 'confirmPass', 'message','signup', 'confirm', 'mediaPost', 'editPassword', 'acceuil', 'insertEmail','profil'];
     if(!in_array($page, $allowed_page)){
         $page = 'notFound';
     }
@@ -24,7 +24,9 @@ session_start();
             case 'ajoutAmis':      return 'vues/users/friends.php';
             case 'demandesAmis':   return 'vues/users/demandesAmis.php';
             case 'notification':   return 'vues/users/notification.php';
-            case 'update':   return 'vues/users/update.php';
+            case 'update':         return 'vues/users/update.php';
+            case 'photos':         return 'vues/users/photo.php';
+            case 'videos':         return 'vues/users/video.php';
             case 'commentaire':    return 'vues/users/commentaire.php';
             default:               return 'vues/notFound.php';
         }

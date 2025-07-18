@@ -1,6 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
-require_once '../config/database.php';
+require_once '../Database/database.php';
 
 header('Content-Type: application/json');
 
@@ -11,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 try {
-    $stmt = $pdo->prepare('SELECT email FROM users WHERE id = ?');
+    $stmt = $conn->prepare('SELECT email FROM users WHERE user_id = ?');
     $stmt->execute([$_SESSION['user_id']]);
     $user = $stmt->fetch();
 

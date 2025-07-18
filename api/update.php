@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../Database/database.php';
+require_once '../Database/database.php';
 
 header('Content-Type: application/json');
 
@@ -48,7 +48,7 @@ if (!empty($errors)) {
 
 try {
     // Vérifier si l'email existe déjà
-    $stmt = $conn->prepare('SELECT id FROM users WHERE email = ? AND id != ?');
+    $stmt = $conn->prepare('SELECT user_id FROM users WHERE email = ? AND user_id != ?');
     $stmt->execute([$data['email'], $_SESSION['user_id']]);
     
     if ($stmt->fetch()) {
@@ -64,7 +64,7 @@ try {
     $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
     // Mettre à jour les informations de l'utilisateur
-    $stmt = $conn->prepare('UPDATE users SET email = ?, password = ? WHERE id = ?');
+    $stmt = $conn->prepare('UPDATE users SET email = ?, password = ? WHERE user_id = ?');
     $stmt->execute([$data['email'], $hashedPassword, $_SESSION['user_id']]);
 
     echo json_encode([

@@ -96,16 +96,13 @@
                     <a href="#" class="nav-item px-4 py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white active-nav text-primary dark:text-white">
                         <span class="spa-link whitespace-nowrap">Publications</span>
                     </a>
-                    <a href="?page=update" class="nav-item  spa-link px-4 py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                        <span class="whitespace-nowrap ">À propos</span>
-                    </a>
-                    <a href="?page=update" class="nav-item px-4 spa-link py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <a href="?page=amis" class="nav-item px-4 spa-link py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                         <span class="whitespace-nowrap">Amis</span>
                     </a>
-                    <a href="?page=update" class="nav-item px-4 spa-link py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <a href="?page=photos" class="nav-item px-4 spa-link py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                         <span class="whitespace-nowrap">Photos</span>
                     </a>
-                    <a href="?page=update" class="nav-item  spa-link  px-4 py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <a href="?page=videos" class="nav-item  spa-link  px-4 py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                         <span class="whitespace-nowrap">Vidéos</span>
                     </a>
                     <a href="?page=update" class="nav-item spa-link px-4 py-3 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">

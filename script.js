@@ -1515,6 +1515,9 @@ const App = {
             case 'profil_edit':
                 initProfilEditForm();
                 break;
+            case 'update':
+                Account.init();
+                break;
             default:
                 console.log('Page non reconnue:', page);
                 break;
@@ -2385,60 +2388,80 @@ function initProfilEditForm() {
 
 // account.js - Gestion de la mise à jour du compte
 const Account = {
-    init: () => {
-        Account.attachUpdateListener();
-    },
+    init: function() {
+        // Charger les infos utilisateur
+        loadUserData();
 
-    attachUpdateListener: () => {
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        if (togglePassword && password) {
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.textContent = type === 'password' ? '👁️' : '🔒';
+            });
+        }
+
+        // Gestion de la soumission du formulaire
         const form = document.getElementById('accountForm');
-        if (!form) return;
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Récupérer les données du formulaire
-            const formData = {
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-                confirmPassword: document.getElementById('confirmPassword').value
-            };
-
-            try {
-                const response = await fetch("api/update.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(formData)
-                });
-
-                const data = await Utils.handleFetchError(response);
-
-                if (data.success) {
-                    Utils.showMessage(data.message, true);
-                    // Réinitialiser le formulaire
-                    form.reset();
-                    // Cacher les messages d'erreur
-                    document.querySelectorAll('[id$="-error"]').forEach(el => el.classList.add('hidden'));
-                } else {
-                    if (data.errors) {
-                        // Afficher les erreurs spécifiques
-                        data.errors.forEach(error => {
-                            if (error.includes('email')) {
-                                document.getElementById('email-error').classList.remove('hidden');
-                            } else if (error.includes('mot de passe')) {
-                                document.getElementById('password-error').classList.remove('hidden');
-                            } else if (error.includes('correspondent')) {
-                                document.getElementById('confirm-error').classList.remove('hidden');
-                            }
-                        });
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                
+                try {
+                    const response = await fetch("api/update.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(Object.fromEntries(formData))
+                    });
+                    
+                    const data = await Utils.handleFetchError(response);
+                    
+                    if (data.success) {
+                        Utils.showMessage(data.message, true);
+                        // Réinitialiser le formulaire
+                        form.reset();
+                        // Cacher les messages d'erreur
+                        document.querySelectorAll('[id$="-error"]').forEach(el => el.classList.add('hidden'));
+                    } else {
+                        if (data.errors) {
+                            // Afficher les erreurs spécifiques
+                            data.errors.forEach(error => {
+                                if (error.includes('email')) {
+                                    document.getElementById('email-error').classList.remove('hidden');
+                                } else if (error.includes('mot de passe')) {
+                                    document.getElementById('password-error').classList.remove('hidden');
+                                } else if (error.includes('correspondent')) {
+                                    document.getElementById('confirm-error').classList.remove('hidden');
+                                }
+                            });
+                        }
+                        Utils.showMessage(data.message);
                     }
-                    Utils.showMessage(data.message);
+                } catch (err) {
+                    Utils.showMessage(err.message);
                 }
-            } catch (err) {
-                Utils.showMessage(err.message);
-            }
-        });
+            });
+        }
     }
 };
 
 // Initialiser Account
 Account.init();
+
+async function loadUserData() {
+    console.log('Appel de loadUserData'); // Ajoute ce log
+    try {
+        const response = await fetch('api/get_user_info.php');
+        const data = await response.json();
+        console.log('Réponse API:', data);
+        if (data.success) {
+            document.getElementById('email').value = data.email;
+        }
+    } catch (error) {
+        console.error('Erreur lors du chargement des données:', error);
+        if (typeof Utils !== 'undefined') Utils.showMessage('Erreur lors du chargement des données', false);
+    }
+}
