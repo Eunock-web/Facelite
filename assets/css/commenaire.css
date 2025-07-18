@@ -1,0 +1,6 @@
+        .comment-item:hover {
+            background-color: #f0f2f5;
+        }
+        .dark .comment-item:hover {
+            background-color: #3a3b3c;
+        }

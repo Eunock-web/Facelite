@@ -1,0 +1,29 @@
+        .conversation-active {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .dark .conversation-active {
+            background-color: rgba(37, 99, 235, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .conversation-list {
+                display: none;
+            }
+
+            .conversation-list.active {
+                display: block;
+            }
+
+            .message-area {
+                display: none;
+            }
+
+            .message-area.active {
+                display: block;
+            }
+        }
+
+        .main-container {
+            height: calc(100vh - 56px);
+        }

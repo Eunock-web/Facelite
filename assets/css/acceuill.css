@@ -1,0 +1,71 @@
+/* Styles pour les likes */
+.like-button.liked {
+    color: #ef4444 !important;
+}
+
+.like-button.liked i {
+    color: #ef4444 !important;
+}
+
+.like-button:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Animation pour le like */
+.like-button i {
+    transition: all 0.2s ease;
+}
+
+.like-button.liked i {
+    transform: scale(1.1);
+}
+
+/* Styles pour les posts */
+.post-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.reel-video {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+/* Scrollbar personnalisée */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Styles pour les stories */
+.story-item {
+    border: 2px solid #3b82f6;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    
+    main {
+        margin-left: 0;
+    }
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+.dark body {
+    background-color: #18191a;
+}

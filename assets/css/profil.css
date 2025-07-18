@@ -1,0 +1,46 @@
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .profile-cover {
+            background-image: url('https://readdy.ai/api/search-image?query=beautiful%20modern%20city%20skyline%20panorama%20with%20blue%20sky%20and%20white%20clouds%2C%20perfect%20for%20facebook%20cover%20photo%2C%20high%20quality%20professional%20photography&width=820&height=312&seq=1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+            height: 312px;
+        }
+
+        .cover-photo {
+            height: 350px;
+            background: linear-gradient(to right, #4568dc, #b06ab3);
+        }
+                
+        .profile-photo {
+            border: 5px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+                
+                                .dark .profile-photo {
+                                    border-color: #242526;
+                                }
+                
+                                .nav-item:hover {
+                                    background-color: rgba(0, 0, 0, 0.05);
+                                }
+                
+                                .dark .nav-item:hover {
+                                    background-color: rgba(255, 255, 255, 0.05);
+                                }
+                
+                                .active-nav {
+                                    border-bottom: 3px solid #1877f2;
+                                }
+                
+                                @media (max-width: 768px) {
+                                    .cover-photo {
+                                        height: 250px;
+                                    }
+                
+                                    .profile-actions {
+                                        flex-wrap: wrap;
+                                    }
+                                }
